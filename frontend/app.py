@@ -1,8 +1,13 @@
 import streamlit as st
 import requests
+import os
+from dotenv import load_dotenv
 
-# Backend API URL
-BACKEND_URL = "http://localhost:3001"
+# Load environment variables from .env file
+load_dotenv()
+
+# Access the BACKEND_URL
+BACKEND_URL = os.getenv("BACKEND_URL")
 
 st.title("Web Content Q&A Tool")
 

@@ -21,10 +21,16 @@ async def ingest_urls(data: URLInput):
     try:
         scraped_content = []
         for url in data.urls:
-            content = scrape_url(url)
-            scraped_content.append(content)
-            relevant_content = summarise_gemini(" ".join(scraped_content))
-        return {"content": " ".join(relevant_content)}
+            content = scrape_url(url)  # Scrape content from each URL
+            scraped_content.append(content)  # Add scraped content to the list
+
+        # Combine all scraped content into a single string
+        combined_content = " ".join(scraped_content)
+
+        # Summarize and clean the combined content using Gemini
+        # relevant_content = summarise_gemini(combined_content)
+
+        return {"content": combined_content}  # Return the cleaned content
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
