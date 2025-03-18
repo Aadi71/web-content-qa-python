@@ -21,8 +21,6 @@ def summarise_gemini(context: str) -> str:
             contents=f"I will provide you the context, remove the redundant information/text from it, so that I can use the relevant context for questions and answers. Context: {context}\n",
         )
 
-        # Clean up the response text
-        cleaned_text = response.text.replace(" ", "")  # Remove all spaces
-        return cleaned_text
+        return (response.text)
     except Exception as e:
         raise Exception(f"Error asking Gemini: {str(e)}")
